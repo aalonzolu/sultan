@@ -54,10 +54,13 @@ int main(int argc, char *argv[])
     sLogStream.setDevice(&file);
 #endif
 
+
     LibG::Preference::createInstance();
     const QString &lang = LibG::Preference::getString(LibG::SETTING::APPLICATION_LANGUAGE, "id");
     QTranslator tr[3];
-    if(lang.compare("en")) {
+
+    if(lang.compare("id")!=0) {
+        qDebug() << "Loading language: "<< lang;
         QStringList trans{":/translation/sultan_", ":/translation/libgui_", ":/translation/libserver_"};
         for(int i = 0; i < trans.count(); i++) {
             if(tr[i].load(trans[i] + lang))
